@@ -6,11 +6,23 @@ date: today
 ---
 
 ```{r}
+#install.packages("gapminder")
 library(tidyverse)
+library(gapminder)
 ```
 
 # Abstract
 
 Here, I re-examine the analysis of Oeppen and Vaupel (2002).
 
-# Analysis 
+# Life Expectancy Analysis
+
+```{r}
+sumdat <- gapminder_unfiltered  %>% 
+          select(year, country, lifeExp)  %>% 
+          group_by(year) %>% 
+          filter(lifeExp == max(lifeExp)) %>% 
+          arrange(year)
+
+sumdat
+```
